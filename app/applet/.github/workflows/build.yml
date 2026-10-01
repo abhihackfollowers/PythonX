@@ -1,0 +1,93 @@
+name: Android Build & Download APK
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+  actions: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Prepare Required Build Files
+        run: |
+          set -e
+          # 1. Agar app me .env file ki jarurat ho to create karein
+          if [ -f .env.example ] && [ ! -f .env ]; then
+            cp .env.example .env
+          elif [ ! -f .env ]; then
+            touch .env
+          fi
+
+          # 2. Debug keystore agar repository me nahi hai to auto-generate karein
+          if [ -f debug.keystore.base64 ]; then
+            (base64 -d debug.keystore.base64 > debug.keystore 2>/dev/null) || (base64 -D debug.keystore.base64 > debug.keystore 2>/dev/null) || true
+          fi
+          if [ ! -f debug.keystore ] || [ ! -s debug.keystore ]; then
+            keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+      - name: Build Debug APK with Gradle
+        env:
+          GRADLE_OPTS: "-Djava.awt.headless=true -Dorg.gradle.jvmargs=\"-Xmx4g -Djava.awt.headless=true\""
+        run: |
+          if [ -f "./gradlew" ]; then
+            chmod +x ./gradlew
+            ./gradlew assembleDebug --no-daemon --stacktrace
+          else
+            gradle assembleDebug --no-daemon --stacktrace
+          fi
+
+      - name: Locate and Stage APK
+        run: |
+          mkdir -p staging_apk
+          find app/build/outputs/apk/debug/ -type f -name "*.apk" -exec cp {} staging_apk/App-Debug.apk \;
+          ls -lh staging_apk/
+
+      - name: Upload Debug APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: App-Debug-APK
+          path: staging_apk/*.apk
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Create GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        continue-on-error: true
+        if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: App Release v1.0.${{ github.run_number }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: staging_apk/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

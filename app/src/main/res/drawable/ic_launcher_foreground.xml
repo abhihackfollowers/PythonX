@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Glowing Cyber Glass Backplate Backdrop with Inner Shadow -->
+    <path
+        android:pathData="M32,22 L76,22 A14,14 0 0 1 90,36 L90,72 A14,14 0 0 1 76,86 L32,86 A14,14 0 0 1 18,72 L18,36 A14,14 0 0 1 32,22 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="18"
+                android:startY="22"
+                android:endX="90"
+                android:endY="86"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#401E293B" />
+                <item android:offset="1.0" android:color="#200B0F19" />
+            </gradient>
+        </aapt:attr>
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="18"
+                android:startY="22"
+                android:endX="90"
+                android:endY="86"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#9038BDF8" />
+                <item android:offset="0.5" android:color="#6010B981" />
+                <item android:offset="1.0" android:color="#300284C7" />
+            </gradient>
+        </aapt:attr>
+        <aapt:attr name="android:strokeWidth">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="0"
+                android:endY="1"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#00000000" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Top Snake: Neon Cyan / Electric Blue with Volumetric Gradient -->
+    <path
+        android:pathData="M 53.5,27
+            C 44.5,27 40,30.5 40,36.5
+            L 40,43
+            L 54,43
+            L 54,45
+            L 33,45
+            C 27.5,45 23.5,49 23.5,55
+            C 23.5,61.5 28,65.5 35,65.5
+            L 38,65.5
+            L 38,59
+            C 38,54.5 42,50.5 47,50.5
+            L 61,50.5
+            C 65.5,50.5 69.5,46.5 69.5,42
+            L 69.5,35
+            C 69.5,29.5 65.5,27 53.5,27 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="23"
+                android:startY="27"
+                android:endX="70"
+                android:endY="65"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#67E8F9" />
+                <item android:offset="0.3" android:color="#38BDF8" />
+                <item android:offset="0.7" android:color="#0EA5E9" />
+                <item android:offset="1.0" android:color="#0369A1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Top Snake Specular 3D Highlight Arc -->
+    <path
+        android:pathData="M 52,28.5 C 46,28.5 42,31 41.5,35 L 41.5,39 C 43,33 47,30 52,30 C 60,30 65,32 66.5,36 L 67.5,34 C 65.5,30 61,28.5 52,28.5 Z"
+        android:fillColor="#80FFFFFF" />
+
+    <!-- Top Snake Eye (Neon White-Cyan Dot with Iris Glow) -->
+    <path
+        android:pathData="M 45,34 A 3,3 0 1 0 45,34.01"
+        android:fillColor="#3000E5FF" />
+    <path
+        android:pathData="M 45,34 A 1.8,1.8 0 1 0 45,34.01"
+        android:fillColor="#F0FDFA" />
+
+    <!-- Bottom Snake: Neon Emerald / Mint Green with Volumetric Gradient -->
+    <path
+        android:pathData="M 54.5,81
+            C 63.5,81 68,77.5 68,71.5
+            L 68,65
+            L 54,65
+            L 54,63
+            L 75,63
+            C 80.5,63 84.5,59 84.5,53
+            C 84.5,46.5 80,42.5 73,42.5
+            L 70,42.5
+            L 70,49
+            C 70,53.5 66,57.5 61,57.5
+            L 47,57.5
+            C 42.5,57.5 38.5,61.5 38.5,66
+            L 38.5,73
+            C 38.5,78.5 42.5,81 54.5,81 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="85"
+                android:startY="81"
+                android:endX="38"
+                android:endY="42"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#6EE7B7" />
+                <item android:offset="0.3" android:color="#34D399" />
+                <item android:offset="0.7" android:color="#10B981" />
+                <item android:offset="1.0" android:color="#047857" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Bottom Snake Specular 3D Highlight Arc -->
+    <path
+        android:pathData="M 56,79.5 C 62,79.5 66,77 66.5,73 L 66.5,69 C 65,75 61,78 56,78 C 48,78 43,76 41.5,72 L 40.5,74 C 42.5,78 47,79.5 56,79.5 Z"
+        android:fillColor="#80FFFFFF" />
+
+    <!-- Bottom Snake Eye (Neon Mint-White Dot with Iris Glow) -->
+    <path
+        android:pathData="M 63,74 A 3,3 0 1 0 63,74.01"
+        android:fillColor="#3010B981" />
+    <path
+        android:pathData="M 63,74 A 1.8,1.8 0 1 0 63,74.01"
+        android:fillColor="#ECFDF5" />
+
+    <!-- AI Sparkle Accents (Ultra-Modern AI badge in corner) -->
+    <path
+        android:pathData="M78,27 L79.5,32 L84.5,33.5 L79.5,35 L78,40 L76.5,35 L71.5,33.5 L76.5,32 Z"
+        android:fillColor="#FACC15" />
+    <path
+        android:pathData="M27,69 L28,72.5 L31.5,73.5 L28,74.5 L27,78 L26,74.5 L22.5,73.5 L26,72.5 Z"
+        android:fillColor="#38BDF8" />
+</vector>

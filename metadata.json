@@ -1,0 +1,6 @@
+{
+  "name": "PythonX AI",
+  "description": "Next-generation desktop-grade Android Python IDE with offline Python 3 runtime, real-time IntelliSense, live linter, visual pip manager, and AI Copilot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
